@@ -4,6 +4,8 @@
  */
 package mundialB;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +20,9 @@ public class Main {
 
     
     public static void main(String[] args) {
-        int tam=3;
+       
+        
+     int tam=4;
      int[][] entrada= new int[tam][7];
      
      entrada[0][0]=4;
@@ -37,6 +41,7 @@ public class Main {
      entrada[2][5]=0;
      entrada[2][6]=0;
     
+        escribirFichero(calcularRepesca(entrada), "pruebamunidal.txt");
         mostrarArray(calcularRepesca(entrada));
     }
     
@@ -57,6 +62,25 @@ public class Main {
         for(int i =0; i<array.length;i++){
             System.out.println(array[i]);
         }
+    }
+    
+    public static void escribirFichero(int[] array,String idFichero){
+        String tmp;
+        try(BufferedWriter flujo = new BufferedWriter(new FileWriter(idFichero))){
+           for(int i=0;i<array.length;i++){
+               tmp=String.valueOf(array[i]);
+               flujo.write(tmp);
+               flujo.newLine();
+               }
+            
+               
+           
+           flujo.flush();
+           
+       }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        
     }
             
     
